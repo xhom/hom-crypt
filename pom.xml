@@ -98,7 +98,11 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
-                    <tokenAuth>true</tokenAuth>
+                    <!--<tokenAuth>true</tokenAuth>-->
+                    <!-- 若要自动发布，添加以下配置 -->
+                    <!--<autoPublish>true</autoPublish>-->
+                    <!-- 一直等到发布完成 -->
+                    <!--<waitUntil>published</waitUntil>-->
                 </configuration>
             </plugin>
         </plugins>
@@ -126,4 +130,7 @@
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+
+    <!-- 官方maven配置文档 -->
+    <!-- https://central.sonatype.org/publish/publish-portal-maven/ -->
 </project>
