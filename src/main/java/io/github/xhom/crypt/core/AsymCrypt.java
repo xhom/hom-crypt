@@ -93,6 +93,7 @@ public class AsymCrypt {
      * 数字签名
      * @param data 数据
      * @param priKey 私钥
+     * @param cryptType 加密类型
      * @return 签名
      */
     public static String sign(String data, String priKey, CryptType cryptType){

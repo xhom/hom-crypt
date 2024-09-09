@@ -231,6 +231,7 @@ public class CryptUtil {
          * 验签
          * @param data 数据（未加密）
          * @param publicKey 公钥
+         * @param sign 签名
          * @return 是否验证通过
          */
         public static boolean verify(String data, String publicKey, String sign) {
@@ -271,6 +272,7 @@ public class CryptUtil {
         }
         /**
          * 乙方根据甲方公钥初始化一对密钥
+         * @param pubKey 公钥
          * @return 密钥对
          */
         public static StrKeyPair initKeyPair(String pubKey) {
@@ -479,6 +481,7 @@ public class CryptUtil {
         /**
          * 计算Hash值
          * @param data 数据
+         * @param key 密码
          * @return hash值
          */
         public static String hash(String data, String key) {
