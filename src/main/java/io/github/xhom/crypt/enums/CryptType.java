@@ -15,8 +15,8 @@ import java.util.function.Function;
 
 /**
  * 加密类型枚举
- * @author visy.wang
- * @date 2024/9/9 14:55
+ * @author xhom
+ * @version 1.0.0
  */
 @Getter
 @AllArgsConstructor

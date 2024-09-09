@@ -2,8 +2,8 @@ package io.github.xhom.crypt.comm;
 
 /**
  * 加密业务异常
- * @author visy.wang
- * @date 2024/9/9 15:03
+ * @author xhom
+ * @version 1.0.0
  */
 public class CryptException extends RuntimeException {
     public CryptException(String message) {

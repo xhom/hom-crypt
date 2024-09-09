@@ -9,8 +9,8 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * 哈希算法通用类
- * @author visy.wang
- * @date 2024/9/9 15:32
+ * @author xhom
+ * @version 1.0.0
  */
 public class HashAlg {
     /**

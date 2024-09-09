@@ -8,8 +8,8 @@ import java.security.KeyPair;
 
 /**
  * 密钥对（字符串）
- * @author visy.wang
- * @date 2024/9/9 15:05
+ * @author xhom
+ * @version 1.0.0
  */
 @Data
 @Builder

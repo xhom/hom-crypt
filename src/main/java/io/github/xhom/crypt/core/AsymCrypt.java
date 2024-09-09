@@ -21,8 +21,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * 非对称加密通用类
- * @author visy.wang
- * @date 2024/9/9 15:29
+ * @author xhom
+ * @version 1.0.0
  */
 public class AsymCrypt {
     /**

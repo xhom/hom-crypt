@@ -7,8 +7,8 @@ import java.util.Base64;
  * 网络上最常见的用于传输8Bit字节码的编码方式之一，就是一种基于64个可打印字符来表示二进制数据的方法
  * 包括小写字母a-z、大写字母A-Z、数字0-9、符号"+"、"/"一共64个字符的字符集
  * 任何符号都可以转换成这个字符集中的字符，这个转换过程就叫做base64编码
- * @author visy.wang
- * @date 2024/9/9 15:25
+ * @author xhom
+ * @version 1.0.0
  */
 public class BASE64 {
     public static Base64.Encoder encoder = Base64.getEncoder();

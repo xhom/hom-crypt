@@ -4,8 +4,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 字符串工具类
- * @author visy.wang
- * @date 2024/9/9 15:17
+ * @author xhom
+ * @version 1.0.0
  */
 public class StrUtil {
     /**

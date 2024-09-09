@@ -15,8 +15,8 @@ import java.util.Objects;
 
 /**
  * 对称加密通用类
- * @author visy.wang
- * @date 2024/9/9 15:23
+ * @author xhom
+ * @version 1.0.0
  */
 public class SymCrypt {
     /**

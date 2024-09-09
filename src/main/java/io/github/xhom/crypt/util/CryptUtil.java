@@ -22,8 +22,8 @@ import java.security.spec.X509EncodedKeySpec;
 
 /**
  * 加密解密工具集（基于JDK）
- * @author visy.wang
- * @date 2024/9/9 14:52
+ * @author xhom
+ * @version 1.0.0
  */
 public class CryptUtil {
     /**
