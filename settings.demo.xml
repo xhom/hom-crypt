@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+
+    <!-- 本地仓库地址 -->
+    <localRepository>D:\Working\developer\mvn\repository</localRepository>
+
+    <pluginGroups></pluginGroups>
+    <proxies></proxies>
+
+    <servers>
+        <!-- maven中央仓库 -->
+        <server>
+            <id>central</id>
+            <!-- 用户名和密码来自sonatype生成的User Token -->
+            <username>xxx</username>
+            <password>xxxxxxxxxxxxxxxxxxxxx</password>
+        </server>
+    </servers>
+
+    <mirrors>
+        <!-- 阿里云镜像仓库 -->
+        <mirror>
+            <id>alimanven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>jdk-1.8</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+            </properties>
+        </profile>
+        <profile>
+            <id>gpg</id>
+            <properties>
+                <!-- 本地gpg执行目录（注意和安装目录不是同一个，与安装目录最外层目录同级） -->
+                <gpg.executable>D:\ProgramFiles\GnuPG\bin</gpg.executable>
+                <!-- 创建密钥时的密码passphrase -->
+                <gpg.passphrase>xxxxxx</gpg.passphrase>
+            </properties>
+        </profile>
+    </profiles>
+
+    <activeProfiles>
+        <!-- 应用gpg profile -->
+        <activeProfile>gpg</activeProfile>
+    </activeProfiles>
+
+</settings>
