@@ -7,7 +7,6 @@ import io.github.xhom.crypt.util.BASE64;
 import io.github.xhom.crypt.util.StrUtil;
 
 import javax.crypto.Cipher;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -15,9 +14,6 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.Signature;
-import java.security.spec.KeySpec;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 
 /**
  * 非对称加密通用类
@@ -54,9 +50,7 @@ public class AsymCrypt {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = StrUtil.strToBytes(data);
-            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-            KeySpec keySpec = new X509EncodedKeySpec(BASE64.decodeToBytes(pubKey));
-            PublicKey publicKey = keyFactory.generatePublic(keySpec);
+            PublicKey publicKey = StrKeyPair.toPublicKey(pubKey, cryptType);
             Cipher cipher = Cipher.getInstance(cryptType.getCipher());
             cipher.init(Cipher.ENCRYPT_MODE, publicKey, new SecureRandom());
             byte[] ciphertext = cipher.doFinal(plaintext);
@@ -77,9 +71,7 @@ public class AsymCrypt {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] ciphertext = BASE64.decodeToBytes(data);
-            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-            KeySpec keySpec = new PKCS8EncodedKeySpec(BASE64.decodeToBytes(prikey));
-            PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+            PrivateKey privateKey = StrKeyPair.toPrivateKey(prikey, cryptType);
             Cipher decryptCipher = Cipher.getInstance(cryptType.getCipher());
             decryptCipher.init(Cipher.DECRYPT_MODE, privateKey, new SecureRandom());
             byte[] plaintext = decryptCipher.doFinal(ciphertext);
@@ -100,9 +92,7 @@ public class AsymCrypt {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = BASE64.encodeToBytes(data);
-            KeySpec keySpec = new PKCS8EncodedKeySpec(BASE64.decodeToBytes(priKey));
-            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-            PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
+            PrivateKey privateKey = StrKeyPair.toPrivateKey(priKey, cryptType);
             Signature signature = Signature.getInstance(cryptType.getCipher());
             signature.initSign(privateKey);
             signature.update(plaintext);
@@ -125,9 +115,7 @@ public class AsymCrypt {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = BASE64.encodeToBytes(data);
-            KeySpec keySpec = new X509EncodedKeySpec(BASE64.decodeToBytes(pubKey));
-            KeyFactory keyFactory = KeyFactory.getInstance(algorithm);
-            PublicKey publicKey = keyFactory.generatePublic(keySpec);
+            PublicKey publicKey = StrKeyPair.toPublicKey(pubKey, cryptType);
             Signature signature = Signature.getInstance(cryptType.getCipher());
             signature.initVerify(publicKey);
             signature.update(plaintext);
