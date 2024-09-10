@@ -26,7 +26,7 @@ public class RSA extends AsymCrypt {
      * @return 密钥对
      */
     public static StrKeyPair generateKeyPair(int size) {
-        //密匙长度通常为1024或2048
+        //密钥长度通常为1024或2048
         return generateKeyPair(CryptType.RSA, size);
     }
 

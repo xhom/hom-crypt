@@ -25,19 +25,19 @@ public class SymCrypt {
     private static final int IV_LENGTH = 16;
 
     /**
-     * 生成密匙
+     * 生成密钥
      * @param cryptType 加密类型
-     * @return 密匙
+     * @return 密钥
      */
     public static String generateKey(CryptType cryptType) {
         return generateKey(cryptType, null);
     }
 
     /**
-     * 生成密匙
+     * 生成密钥
      * @param cryptType 加密类型
-     * @param size 密匙长度
-     * @return 密匙
+     * @param size 密钥长度
+     * @return 密钥
      */
     public static String generateKey(CryptType cryptType, Integer size) {
         String algorithm = cryptType.getAlgorithm();
@@ -51,14 +51,14 @@ public class SymCrypt {
             byte[] key = generator.generateKey().getEncoded();
             return BASE64.encodeToStr(key);
         } catch (NoSuchAlgorithmException e) {
-            throw CryptException.of(algorithm+"生成密匙异常", e);
+            throw CryptException.of(algorithm+"生成密钥异常", e);
         }
     }
 
     /**
      * 加密
      * @param data 明文
-     * @param key 密匙
+     * @param key 密钥
      * @param cryptType 加密类型
      * @return 密文
      */
@@ -94,7 +94,7 @@ public class SymCrypt {
     /**
      * 解密
      * @param data 密文
-     * @param key 密匙
+     * @param key 密钥
      * @param cryptType 加密类型
      * @return 明文
      */

@@ -35,7 +35,7 @@ public class AsymCrypt {
             KeyPair keyPair = generator.generateKeyPair();
             return StrKeyPair.of(keyPair);
         }catch (NoSuchAlgorithmException e) {
-            throw CryptException.of(algorithm+"生成密匙对异常", e);
+            throw CryptException.of(algorithm+"生成密钥对异常", e);
         }
     }
 
