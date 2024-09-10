@@ -29,7 +29,10 @@ public enum CryptType {
     SHA1("SHA-1", null, null),
     SHA256("SHA-256", null, null),
     SHA512("SHA-512", null, null),
-    HMAC("HmacSHA256", null, CryptType::getHMacKeySpec);
+    HMAC_MD5("HmacMD5", null, null),
+    HMAC_SHA1("HmacSHA1", null, null),
+    HMAC_SHA256("HmacSHA256", null, null),
+    HMAC_SHA512("HmacSHA512", null, null);
 
     private final String algorithm;
     private final String cipher;
@@ -53,9 +56,6 @@ public enum CryptType {
     }
     private static SecretKey getRC4KeySpec(byte[] key){
         return new SecretKeySpec(key, RC4.getAlgorithm());
-    }
-    private static SecretKey getHMacKeySpec(byte[] key){
-        return new SecretKeySpec(key, HMAC.getAlgorithm());
     }
     private static SecretKey getDESKeySpec(byte[] key){
         try {

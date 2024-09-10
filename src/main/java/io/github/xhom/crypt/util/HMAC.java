@@ -1,10 +1,7 @@
 package io.github.xhom.crypt.util;
 
-import io.github.xhom.crypt.comm.CryptException;
 import io.github.xhom.crypt.core.HashAlg;
 import io.github.xhom.crypt.enums.CryptType;
-
-import javax.crypto.Mac;
 
 /**
  * HMAC(Hash Message Authentication Code)
@@ -21,20 +18,39 @@ import javax.crypto.Mac;
  */
 public class HMAC extends HashAlg {
     /**
-     * 计算Hash值
+     * 计算校验码 (MD5)
      * @param data 数据
-     * @param key 密码
-     * @return hash值
+     * @param pass 密码
+     * @return 校验码
      */
-    public static String hash(String data, String key) {
-        try{
-            String algorithm = CryptType.HMAC.getAlgorithm();
-            Mac mac = Mac.getInstance(algorithm);
-            mac.init(CryptType.HMAC.getSecretKey(StrUtil.strToBytes(key)));
-            byte[] bytes = mac.doFinal(StrUtil.strToBytes(data));
-            return toHexString(bytes);
-        }catch (Exception e) {
-            throw CryptException.of("HMC计算异常", e);
-        }
+    public static String md5(String data, String pass) {
+        return hmac(data, pass, CryptType.HMAC_MD5);
+    }
+    /**
+     * 计算校验码 (SHA1)
+     * @param data 数据
+     * @param pass 密码
+     * @return 校验码
+     */
+    public static String sha1(String data, String pass) {
+        return hmac(data, pass, CryptType.HMAC_SHA1);
+    }
+    /**
+     * 计算校验码 (SHA256)
+     * @param data 数据
+     * @param pass 密码
+     * @return 校验码
+     */
+    public static String sha256(String data, String pass) {
+        return hmac(data, pass, CryptType.HMAC_SHA256);
+    }
+    /**
+     * 计算校验码 (SHA512)
+     * @param data 数据
+     * @param pass 密码
+     * @return 校验码
+     */
+    public static String sha512(String data, String pass) {
+        return hmac(data, pass, CryptType.HMAC_SHA512);
     }
 }
