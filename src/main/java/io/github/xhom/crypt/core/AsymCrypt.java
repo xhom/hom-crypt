@@ -72,9 +72,9 @@ public class AsymCrypt {
         try {
             byte[] ciphertext = BASE64.decodeToBytes(data);
             PrivateKey priKey = StrKeyPair.toPrivateKey(privateKey, cryptType);
-            Cipher decryptCipher = Cipher.getInstance(cryptType.getCipher());
-            decryptCipher.init(Cipher.DECRYPT_MODE, priKey, new SecureRandom());
-            byte[] plaintext = decryptCipher.doFinal(ciphertext);
+            Cipher cipher = Cipher.getInstance(cryptType.getCipher());
+            cipher.init(Cipher.DECRYPT_MODE, priKey, new SecureRandom());
+            byte[] plaintext = cipher.doFinal(ciphertext);
             return StrUtil.bytesToStr(plaintext);
         } catch (Exception e) {
             throw CryptException.of(algorithm+"解密异常", e);
