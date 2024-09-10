@@ -26,10 +26,10 @@ import java.security.spec.X509EncodedKeySpec;
  */
 public class AsymCrypt {
     /**
-     * 生成密匙对
+     * 生成密钥对
      * @param cryptType 加密类型
-     * @param size 密匙长度
-     * @return 密匙对
+     * @param size 密钥长度
+     * @return 密钥对
      */
     public static StrKeyPair generateKeyPair(CryptType cryptType, Integer size){
         String algorithm = cryptType.getAlgorithm();

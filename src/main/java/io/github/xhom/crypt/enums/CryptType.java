@@ -1,8 +1,5 @@
 package io.github.xhom.crypt.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
@@ -18,11 +15,11 @@ import java.util.function.Function;
  * @author xhom
  * @version 1.0.0
  */
-@Getter
-@AllArgsConstructor
 public enum CryptType {
-    AES("AES", "AES/CBC/PKCS5Padding", CryptType::getAESKeySpec),
+    AES("AES", "AES/ECB/PKCS5Padding", CryptType::getAESKeySpec),
+    AES_CBC("AES", "AES/CBC/PKCS5Padding", CryptType::getAESKeySpec),
     DES("DES", "DES/ECB/PKCS5Padding", CryptType::getDESKeySpec),
+    DES_CBC("DES", "DES/CBC/PKCS5Padding", CryptType::getDESKeySpec),
     DES3("DESede", "DESede", CryptType::getDESedeKeySpec),
     RC4("RC4", "RC4", CryptType::getRC4KeySpec),
     RSA("RSA", "RSA", null),
@@ -37,6 +34,12 @@ public enum CryptType {
     private final String algorithm;
     private final String cipher;
     private final Function<byte[], SecretKey> keyCreator;
+
+    CryptType(String algorithm, String cipher, Function<byte[], SecretKey> keyCreator) {
+        this.algorithm = algorithm;
+        this.cipher = cipher;
+        this.keyCreator = keyCreator;
+    }
 
     public SecretKey getSecretKey(byte[] key){
         return keyCreator==null ? null : keyCreator.apply(key);
@@ -67,5 +70,13 @@ public enum CryptType {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getAlgorithm() {
+        return algorithm;
+    }
+
+    public String getCipher() {
+        return cipher;
     }
 }
