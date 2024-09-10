@@ -42,17 +42,17 @@ public class AsymCrypt {
     /**
      * 加密
      * @param data 明文
-     * @param pubKey 公钥
+     * @param publicKey 公钥
      * @param cryptType 加密类型
      * @return 密文
      */
-    public static String encrypt(String data, String pubKey, CryptType cryptType) {
+    public static String encrypt(String data, String publicKey, CryptType cryptType) {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = StrUtil.strToBytes(data);
-            PublicKey publicKey = StrKeyPair.toPublicKey(pubKey, cryptType);
+            PublicKey pubKey = StrKeyPair.toPublicKey(publicKey, cryptType);
             Cipher cipher = Cipher.getInstance(cryptType.getCipher());
-            cipher.init(Cipher.ENCRYPT_MODE, publicKey, new SecureRandom());
+            cipher.init(Cipher.ENCRYPT_MODE, pubKey, new SecureRandom());
             byte[] ciphertext = cipher.doFinal(plaintext);
             return BASE64.encodeToStr(ciphertext);
         } catch (Exception e) {
@@ -63,17 +63,17 @@ public class AsymCrypt {
     /**
      * 解密
      * @param data 密文
-     * @param prikey 私钥
+     * @param privateKey 私钥
      * @param cryptType 加密类型
      * @return 明文
      */
-    public static String decrypt(String data, String prikey, CryptType cryptType) {
+    public static String decrypt(String data, String privateKey, CryptType cryptType) {
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] ciphertext = BASE64.decodeToBytes(data);
-            PrivateKey privateKey = StrKeyPair.toPrivateKey(prikey, cryptType);
+            PrivateKey priKey = StrKeyPair.toPrivateKey(privateKey, cryptType);
             Cipher decryptCipher = Cipher.getInstance(cryptType.getCipher());
-            decryptCipher.init(Cipher.DECRYPT_MODE, privateKey, new SecureRandom());
+            decryptCipher.init(Cipher.DECRYPT_MODE, priKey, new SecureRandom());
             byte[] plaintext = decryptCipher.doFinal(ciphertext);
             return StrUtil.bytesToStr(plaintext);
         } catch (Exception e) {
@@ -84,17 +84,17 @@ public class AsymCrypt {
     /**
      * 数字签名
      * @param data 数据
-     * @param priKey 私钥
+     * @param privateKey 私钥
      * @param cryptType 加密类型
      * @return 签名
      */
-    public static String sign(String data, String priKey, CryptType cryptType){
+    public static String sign(String data, String privateKey, CryptType cryptType){
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = BASE64.encodeToBytes(data);
-            PrivateKey privateKey = StrKeyPair.toPrivateKey(priKey, cryptType);
+            PrivateKey priKey = StrKeyPair.toPrivateKey(privateKey, cryptType);
             Signature signature = Signature.getInstance(cryptType.getCipher());
-            signature.initSign(privateKey);
+            signature.initSign(priKey);
             signature.update(plaintext);
             byte[] sign = signature.sign();
             return BASE64.encodeToStr(sign);
@@ -106,18 +106,18 @@ public class AsymCrypt {
     /**
      * 验签
      * @param data 数据
-     * @param pubKey 公钥
+     * @param publicKey 公钥
      * @param sign 签名
      * @param cryptType 加密类型
      * @return 是否验证通过
      */
-    public static boolean verify(String data, String pubKey, String sign, CryptType cryptType){
+    public static boolean verify(String data, String publicKey, String sign, CryptType cryptType){
         String algorithm = cryptType.getAlgorithm();
         try {
             byte[] plaintext = BASE64.encodeToBytes(data);
-            PublicKey publicKey = StrKeyPair.toPublicKey(pubKey, cryptType);
+            PublicKey pubKey = StrKeyPair.toPublicKey(publicKey, cryptType);
             Signature signature = Signature.getInstance(cryptType.getCipher());
-            signature.initVerify(publicKey);
+            signature.initVerify(pubKey);
             signature.update(plaintext);
             return signature.verify(BASE64.decodeToBytes(sign));
         } catch (Exception e) {
