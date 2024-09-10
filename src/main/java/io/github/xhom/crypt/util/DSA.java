@@ -26,7 +26,7 @@ public class DSA extends AsymCrypt {
      * @return 密钥对
      */
     public static StrKeyPair generateKeyPair(int size) {
-        return generateKeyPair(CryptType.DSA, 1024);
+        return generateKeyPair(CryptType.DSA_SHA256, size);
     }
 
     /**
@@ -36,7 +36,7 @@ public class DSA extends AsymCrypt {
      * @return 签名
      */
     public static String sign(String data, String privateKey) {
-        return sign(data, privateKey, CryptType.DSA);
+        return sign(data, privateKey, CryptType.DSA_SHA256);
     }
 
     /**
@@ -47,6 +47,6 @@ public class DSA extends AsymCrypt {
      * @return 是否验证通过
      */
     public static boolean verify(String data, String publicKey, String sign) {
-        return verify(data, publicKey, sign, CryptType.DSA);
+        return verify(data, publicKey, sign, CryptType.DSA_SHA256);
     }
 }

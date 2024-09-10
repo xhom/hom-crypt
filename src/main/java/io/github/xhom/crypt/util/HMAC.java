@@ -11,7 +11,7 @@ import io.github.xhom.crypt.enums.CryptType;
  * 算法可以与许多哈希函数结合使用，常用的哈希函数包括：
  * HMAC-MD5：使用MD5哈希函数生成HMAC
  * HMAC-SHA1：使用SHA-1哈希函数生成HMAC
- * HMAC-SHA256：使用SHA-256哈希函数生成HMAC
+ * HMAC-SHA256：使用SHA-256哈希函数生成HMAC （推荐使用）
  * HMAC-SHA512：使用SHA-512哈希函数生成HMAC
  * @author xhom
  * @version 2.0.0
