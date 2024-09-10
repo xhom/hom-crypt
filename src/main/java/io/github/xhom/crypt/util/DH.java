@@ -82,13 +82,14 @@ public class DH extends AsymCrypt {
             if(CryptType.DH.equals(cryptType)){
                 throw CryptException.of("DH生成本地密钥不能使用相同算法");
             }
-            PublicKey pubKey = StrKeyPair.toPublicKey(publicKey, cryptType);
-            PrivateKey priKey = StrKeyPair.toPrivateKey(privateKey, cryptType);
+            PublicKey pubKey = StrKeyPair.toPublicKey(publicKey, CryptType.DH);
+            PrivateKey priKey = StrKeyPair.toPrivateKey(privateKey, CryptType.DH);
             KeyAgreement agreement = KeyAgreement.getInstance(CryptType.DH.getAlgorithm());
             agreement.init(priKey);
             agreement.doPhase(pubKey, true);
             return agreement.generateSecret(cryptType.getAlgorithm());
         } catch (Exception e) {
+            e.printStackTrace();
             throw CryptException.of("DH生成本地密钥异常", e);
         }
     }
